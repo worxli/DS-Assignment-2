@@ -1,8 +1,10 @@
 package ch.ethz.inf.vs.android.lukasbi.rest;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends Activity {
 
@@ -19,4 +21,23 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	/**
+	 * Buttonlisteners
+	 */
+	public void rawRequest (View v) {
+		Button b = (Button) v;
+		b.setText("1");
+	}
+	
+	public void apacheRequest (View v) {
+		
+	}
+	
+	public void jsonRetrieve (View v) {
+		
+	}
+
+	public void jsonParse (View v) {
+		
+	}
 }
