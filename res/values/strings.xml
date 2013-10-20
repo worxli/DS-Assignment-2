@@ -9,4 +9,7 @@
 	<string name="json_parse">Display JSON temperature</string>
 	<string name="result_title">Result:</string>
 	<string name="init_result"></string>
+	<string name="io_error">An IO error occured: </string>
+	<string name="no_internet">You are not connected to the internet</string>
+	<string name="invalid_response">Invalid response from server</string>
 </resources>

@@ -24,12 +24,13 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080006;
+        public static final int action_settings=0x7f080007;
         public static final int btn_apache_request=0x7f080001;
         public static final int btn_json_parse=0x7f080003;
         public static final int btn_json_retrieve=0x7f080002;
         public static final int btn_raw_request=0x7f080000;
-        public static final int txt_result=0x7f080005;
+        public static final int scroll_view=0x7f080005;
+        public static final int txt_result=0x7f080006;
         public static final int txt_title=0x7f080004;
     }
     public static final class layout {
@@ -43,8 +44,11 @@ public final class R {
         public static final int apache=0x7f050003;
         public static final int app_name=0x7f050000;
         public static final int init_result=0x7f050007;
+        public static final int invalid_response=0x7f05000a;
+        public static final int io_error=0x7f050008;
         public static final int json_parse=0x7f050005;
         public static final int json_retrieve=0x7f050004;
+        public static final int no_internet=0x7f050009;
         public static final int raw_request=0x7f050002;
         public static final int result_title=0x7f050006;
     }
