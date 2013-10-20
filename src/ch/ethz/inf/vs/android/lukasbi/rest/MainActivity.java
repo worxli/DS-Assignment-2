@@ -126,15 +126,16 @@ public class MainActivity extends Activity {
 								break;
 						}
 					} else {
-						writeResult(getString(R.string.no_internet));
+						result = getString(R.string.no_internet);
+						break;
 					}
 				// if any exception occures, print it to the user screen
 				} catch (UnknownHostException e) {
-					writeResult(e.getMessage());
+					result = e.getMessage();
 				} catch (IOException e) {
-					writeResult(getString(R.string.io_error) + e.getMessage());
+					result = getString(R.string.io_error) + e.getMessage();
 				} catch (JSONException e) {
-					writeResult(e.getMessage());
+					result = e.getMessage();
 				}
 			}
 
@@ -212,7 +213,8 @@ public class MainActivity extends Activity {
 			
 			// write result to textview.
 			// this method is synchronized with the user main thread (handled by Android), so no problems occur...
-			writeResult(result);
+			if (result != null) 
+				writeResult(result);
 		}
 		
 		@Override
