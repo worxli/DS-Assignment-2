@@ -13,6 +13,8 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
@@ -73,6 +75,13 @@ public class MainActivity extends Activity {
 		public static final int MODE_DISPLAY_JSON = 3;
 		private int mode;
 		
+		/**
+		 * JSON Tags
+		 */
+		private static final String TAG_NAME = "name";
+		private static final String TAG_VALUE = "value";
+		
+		// constructor, set the mode here once
 		public RESTWorker (int mode) {
 			this.mode = mode;
 		}
@@ -94,30 +103,38 @@ public class MainActivity extends Activity {
 						// for each assignment one case
 						switch (mode) {
 							default:
-							case 0:
+							case RESTWorker.MODE_RAW_REST:
 								result = rawRequest(address, url);
 								break;
 							
-							case 1:
-								result = apacheRequest(fullURL);
+							case RESTWorker.MODE_USE_APACHE_LIBRARY:
+								result = apacheRequest(fullURL, RESTWorker.MODE_USE_APACHE_LIBRARY);
 								break;
 								
-							case 2:
-								result = rawRequest(address, url);
+							case RESTWorker.MODE_NEGOTIATION_JSON:
+								result = apacheRequest(fullURL, RESTWorker.MODE_NEGOTIATION_JSON);
 								break;
 								
-							case 3:
-								result = rawRequest(address, url);
+							case RESTWorker.MODE_DISPLAY_JSON:
+								String json = apacheRequest(fullURL, RESTWorker.MODE_DISPLAY_JSON);
+								
+								// parse the retrieved json string and extract the temperature
+								JSONObject jobject = new JSONObject(json);
+								String name = jobject.getString(TAG_NAME);
+								double value = jobject.getDouble(TAG_VALUE);
+								result = String.format("%s: %2.2f", name, value);
 								break;
-						
 						}
 					} else {
 						writeResult(getString(R.string.no_internet));
 					}
+				// if any exception occures, print it to the user screen
 				} catch (UnknownHostException e) {
 					writeResult(e.getMessage());
 				} catch (IOException e) {
 					writeResult(getString(R.string.io_error) + e.getMessage());
+				} catch (JSONException e) {
+					writeResult(e.getMessage());
 				}
 			}
 
@@ -127,10 +144,12 @@ public class MainActivity extends Activity {
 		/**
 		 * This does a request to the REST service with the usage of the Apache HTTP library
 		 */
-		private String apacheRequest (String url) throws UnknownHostException, IOException {
+		private String apacheRequest (String url, int mode) throws UnknownHostException, IOException {
 			HttpClient client = new DefaultHttpClient();
 			HttpGet request = new HttpGet(url);
 			request.setHeader("Connection", "close");
+			if (mode == RESTWorker.MODE_NEGOTIATION_JSON || mode == RESTWorker.MODE_DISPLAY_JSON)
+				request.setHeader("Accept", "application/json");
 			
 			// do the request
 			HttpResponse response = client.execute(request);
@@ -231,15 +250,18 @@ public class MainActivity extends Activity {
 	}
 	
 	public void apacheRequest (View v) {
+		// worker instance to get REST respone for the temperature of spot 1 using Apache HTTP library
 		new RESTWorker(RESTWorker.MODE_USE_APACHE_LIBRARY).execute(PAGE[0]);
 	}
 	
 	public void jsonRetrieve (View v) {
-		
+		// worker instance to get REST respone for the temperature of spot 1 using JSON for response
+		new RESTWorker(RESTWorker.MODE_NEGOTIATION_JSON).execute(PAGE[0]);
 	}
 
 	public void jsonParse (View v) {
-		
+		// worker instance to get REST respone for the temperature of spot 1, displaying only the temperature
+		new RESTWorker(RESTWorker.MODE_DISPLAY_JSON).execute(PAGE[0]);
 	}
 	
 	private void writeResult (String result) {
