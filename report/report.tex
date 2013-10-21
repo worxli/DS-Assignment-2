@@ -94,17 +94,18 @@
 % e-mail address with \email.
 %
 % 1st. author
-\alignauthor Student One\\
-	\affaddr{ETH ID XX-XXX-XXX}\\
-	\email{one@student.ethz.ch}
+\alignauthor Robin Guldener\\
+	\affaddr{ETH ID 11-930-369}\\
+	\email{robing@student.ethz.ch}
 % 2nd. author
-\alignauthor Student Two\\
-	\affaddr{ETH ID XX-XXX-XXX}\\
-	\email{two@student.ethz.ch}
+\alignauthor Nico Previtali\\
+	\affaddr{ETH ID 11-926-433}\\
+	\email{pnico@student.ethz.ch}
 %% 3rd. author
-\alignauthor Student Three\\
-	\affaddr{ETH ID XX-XXX-XXX}\\
-	\email{three@student.ethz.ch}
+\alignauthor Lukas Bischofberger\\
+	\affaddr{ETH ID 11-915-907}\\
+	\email{lukasbi@student.ethz.ch}
+}
 %\and  % use '\and' if you need 'another row' of author names
 %% 4th. author
 %\alignauthor Student Four\\
@@ -118,7 +119,7 @@
 %\alignauthor Student Six\\
 % 	\affaddr{ETH ID XX-XXX-XXX}\\
 % 	\email{six@student.ethz.ch}
-}
+%}
 
 
 \begin{document}
@@ -149,6 +150,44 @@ Compare RESTful against WS\hbox{-}* Web Services by listing some advantages and 
 \end{itemize}
 
 \section{WS-* Web Services}
+As a first task for the WS-* web services part we had to think about how we would implement invoking a WS-* web service only using the \texttt{java.net} library. The following steps would have to be pursued:
+\begin{enumerate}
+	\item Get the web service's description by obtaining its WSDL file from a predefined address. This could be downloaded with an HTTP GET request utilizing the \texttt{URLConnection} class like thus:
+	\lstset{language=Java,caption={Getting data from a webserver using HTTP GET},label=httpget} 
+	\begin{lstlisting}
+// Assuming url is a String holding the url for the WSDL
+URLConnection connection = new URL(url).openConnection();
+InputStream stream = connection.getInputStream();
+	\end{lstlisting}
+	\item Read the entire response from the input stream and parse the response using an XML library (or write your own). From the WSDL extract the URL of the web service you wish to call by looking at the \texttt{PortType} section and finding the \texttt{operation} which you would like to perform. Also be sure to check the appropriate input and output configuration as well as the actual transport protocol (usually SOAP) for your \texttt{operation} from the \texttt{binding} section
+	\item Prepare the actual request, here we will use SOAP. For SOAP this means creating the request XML by defining the SOAP envelope and specifying the header and body information required by the \texttt{operation} that is to be queried/called. In this example we a re calling one of the web services provided by the VSLAB and request a list of all discovered SunSPOTs:
+	\lstset{language=XML,caption={SOAP Request},label=httpget} 
+	\begin{lstlisting}
+<?xml version="1.0" encoding="UTF-8"?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+    <S:Header/>
+    <S:Body>
+        <ns2:getDiscoveredSpots xmlns:ns2="http://webservices.vslecture.vs.inf.ethz.ch/"/>
+    </S:Body>
+</S:Envelope>
+	\end{lstlisting}
+	\item Now that the request is ready it has to be actually transferred to the endpoint. For this we establish a new \texttt{URLConnection} with the endpoint and send our SOAP request using the HTTP POST keyword to the endpoint like this:
+	\lstset{language=Java,caption={POST-ing a SOAP request to the endpoint},label=httpget} 
+	\begin{lstlisting}
+// Assuming url is a String holding the url for the web service endpoint & soap is the SOAP XML request string
+URLConnection connection = new URL(url).openConnection();
+connection.setDoOutput(true); // Triggers POST.
+connection.setRequestProperty("Content-Type", "application/xml+soap;charset=" + charset);
+OutputStream output = connection.getOutputStream();
+try {
+     output.write(soap.getBytes(charset));
+} finally {
+     try { output.close(); } catch (IOException logOrIgnore) {}
+}
+InputStream response = connection.getInputStream();
+	\end{lstlisting}
+	\item Finally we parse the XML from the response to obtain the data we asked for. Done!
+\end{enumerate}
+
 \begin{itemize}
 	\item Describe shortly, how you designed your application to implement this Task. Did you reuse elements from Task 1?
 	\item What are the roles of WSDL files and SOAP requests in WS-* Web Services?
