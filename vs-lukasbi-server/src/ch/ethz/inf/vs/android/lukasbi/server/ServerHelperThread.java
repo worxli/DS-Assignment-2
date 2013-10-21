@@ -6,40 +6,66 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.util.List;
 
 import ch.ethz.inf.vs.android.lukasbi.server.Sensors.LocalBinder;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.media.MediaPlayer;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
+import android.os.Vibrator;
 import android.util.Log;
 
-public class ServerHelperThread implements Runnable {
+public class ServerHelperThread implements Runnable, SensorEventListener   {
 	
 	private Socket msocket;
-	Sensors mSensor;
-	private Context mContext;
+	private SensorManager sensorManager;
+    private List<Sensor> deviceSensors;
+    private MediaPlayer mp;
+    private Context mContext;
+    private Sensor mySensor;
+    private SensorAdapter sensorAdapter;
+    private float[] items;
+    private boolean sensordata;
 
-
-	public ServerHelperThread(Socket socket, Intent sensors) {
+	public ServerHelperThread(Socket socket, Context appContext, MediaPlayer appmp) {
 		this.msocket = socket;
-		this.mContext.bindService(sensors, mSeConn, Context.BIND_AUTO_CREATE);
+		this.mContext = appContext;
+		this.mp = appmp;
 	}
 	
-	ServiceConnection mSeConn = new ServiceConnection() {
-		  
-		  public void onServiceDisconnected(ComponentName name) {}
-		  
-		  public void onServiceConnected(ComponentName name, IBinder service) {
-		   LocalBinder mLocalBinder = (LocalBinder)service;
-		   mSensor = mLocalBinder.getService();
-		  }
-	};
+	public List<Sensor> getSensors(){
+        return this.deviceSensors;
+    }
+ 
+	
+	public void vibrate(int duration) {
+		Vibrator vibrator = (Vibrator) mContext.getSystemService(mContext.VIBRATOR_SERVICE);
+		vibrator.vibrate(duration * 1000);
+	}
+	
+	public void playSound () {
+		this.mp = MediaPlayer.create(mContext, R.raw.bells);
+		mp.setLooping(false);
+		mp.setVolume(1.0f, 1.0f);
+		mp.start();
+	}
 
 	@Override
 	public void run() {
+		
+	    this.sensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
+        this.deviceSensors = sensorManager.getSensorList(android.hardware.Sensor.TYPE_ALL);
 		
 		try {
 			
@@ -64,67 +90,73 @@ public class ServerHelperThread implements Runnable {
 				page = "";
 			}
 			
-			if(spl[0].equals("GET")){
+			
+			if(spl[0].equals("GET")){	
 				
-				/*switch (page) {
-				case "":
+				Log.d("page:" ,page);
+				
+				if(page==""){
 					response += "<title>root directory</title>";
 					response += "<h2><a href=\"sensors\">Sensors</a></h2>";
 					response += "<h2><a href=\"actuators\">Actuators</a></h2>";
-					break;
-					
-				case "sensors":
+				}
+				
+				if(page.equals("sensors")){
 					response += "<title>sensors</title>";
+					for(Sensor s : getSensors()){
+						response += "<h2><a href=\"sensor/"+s.hashCode()+"\">"+s.getName()+"</a></h2>";
+					}
+				}
 					
-					//return sensor list
+				if(page.equals("sensor")){
+					response += "<title>"+var+"</title>";
+					for(Sensor s : getSensors()){
+						if (s.hashCode() == Integer.parseInt(var)){
+	                        mySensor = s;
+						} 
+					}
+					if(mySensor!=null){
+						this.sensorManager.registerListener(this, this.mySensor, SensorManager.SENSOR_DELAY_NORMAL);
+						while(!sensordata){
+							//wait for sensor data
+						}
+						response += "<h3>"+this.items[0]+"</h3>";
+						this.sensorManager.unregisterListener(this);
+					}
 					
-					break;
+				}
 					
-				case "sensor":
-					
-					break;
-					
-				case "actuators":
+				if(page.equals("actuators")){
 					response += "<title>actuators</title>";
-					response += "<form action=\"play\">";
+					response += "<form action=\"play/\" method=\"GET\">";
 					response += "<input type=\"submit\" value=\"Play sound!\"/>";
 					response += "</form>";
 					response += "<form method=\"GET\" action=\"vibrate/\">";
 					response += "<input type=\"range\" min=\"1\" max=\"10\" name=\"slider\">";
 					response += "<input type=\"submit\" value=\"Vibrate phone!\"/>";
 					response += "</form>";
-					
-					break;
+				}
 				
-				case "play":
-					//service play sound
+				if(page.equals("play")){
+					
+					playSound();
 					response += "<title>sound is playing</title>";
-					response += "<form method=\"POST\" action=\"stop\">";
-					response += "<input type=\"submit\" value=\"Stop sound!\"/>";
+					response += "<form method=\"GET\" action=\"/play/\">";
+					response += "<input type=\"submit\" value=\"Play sound again!\"/>";
 					response += "</form>";
-					break;
+				}
 					
-				case "stop":
-					//service stop sound
-					response += "<title>root directory</title>";
-					response += "<h2><a href=\"sensors\">Sensors</a></h2>";
-					response += "<h2><a href=\"actuators\">Actuators</a></h2>";
-					break;
 					
-				case "vibrate":
-					//vibrate phone
+				if(page.equals("vibrate")){
+					
 					var = spl[1].substring(spl[1].indexOf("=",1)+1);
+					vibrate(Integer.parseInt(var));
+					
 					Log.d("debug: ",var);
 					response += "<title>root directory</title>";
-					response += "<h2><a href=\"sensors\">Sensors</a></h2>";
-					response += "<h2><a href=\"actuators\">Actuators</a></h2>";	
-						
-
-				default:
-					break;
+					response += "<h2><a href=\"/sensors\">Sensors</a></h2>";
+					response += "<h2><a href=\"/actuators\">Actuators</a></h2>";	
 				}
-				*/
-					
 			} else {
 				Log.d("debug: ","unknown request");
 			}
@@ -138,10 +170,21 @@ public class ServerHelperThread implements Runnable {
 		    out.write(response);
 		    out.flush();
 		    out.close();
-			
-			
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void onAccuracyChanged(Sensor arg0, int arg1) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+		// Set new values
+        this.items = event.values;
+        this.sensordata = true;
 	}
 }

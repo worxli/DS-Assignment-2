@@ -1,5 +1,6 @@
 package ch.ethz.inf.vs.android.lukasbi.server;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +13,7 @@ public class MainActivity extends Activity {
 	private ServerMainThread sth;
 	
 	private Thread thread;
+	private MediaPlayer mp;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +27,7 @@ public class MainActivity extends Activity {
 	public void onRunClicked (View v) {
 		
 		if(((ToggleButton) v).isChecked()){
-			Intent Sensorintent = new Intent(this, Sensors.class);
-			Intent Actuatorintent = new Intent(this, Sensors.class);
-            this.startService(Sensorintent);
-            this.startService(Actuatorintent);
-            sth = new ServerMainThread(Sensorintent, Actuatorintent);
+            sth = new ServerMainThread(this.getApplicationContext(),mp);
 			thread = new Thread(sth);
 			thread.start();
 		} else {

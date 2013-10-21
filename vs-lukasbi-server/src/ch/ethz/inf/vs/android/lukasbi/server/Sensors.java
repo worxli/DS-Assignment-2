@@ -23,7 +23,6 @@ public class Sensors extends Service {
     @Override
 	public void onCreate() {
 
-    	
     	this.sensorManager = (SensorManager) getSystemService(mContext.SENSOR_SERVICE);
         this.deviceSensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
 	}
