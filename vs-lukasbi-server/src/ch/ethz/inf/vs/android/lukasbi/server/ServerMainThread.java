@@ -29,7 +29,7 @@ public class ServerMainThread implements Runnable {
 		//while thread is not busy try to accept incoming connections
 		while(!Thread.currentThread().isInterrupted()) {
 			try {
-				socket = serverSocket.accept();			    
+				socket = serverSocket.accept();	
 				
 				//start a new thread to handle connection
 				ServerHelperThread sth = new ServerHelperThread(socket, mContext);

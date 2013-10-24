@@ -201,9 +201,27 @@ InputStream response = connection.getInputStream();
 
 \section{Your Phone As a Server}
 \begin{itemize}
-	\item Describe shortly, how you designed your application to implement this Task. Which Android core elements did you use this time?
-	\item Show in a control flow diagram, pseudo code or your actual Java implementation, how you (would) do the handling of the connections on the server side. If you weren't able to implement the multi threading, explain it for a single threaded version.
-	\item Did you implement sensing and/or actuation? How did you make use of the different HTTP methods, e.g. GET or PUT?
+	\item The implementation of the server relies on an Activity to start and stop the server and some background threads to handle network action and multitasking. 
+	%\item Describe shortly, how you designed your application to implement this Task. Which Android core elements did you use this time?
+	\item Java code for accepting multiple connections. Each time the socket is bound to an incoming connection it gets assigned to a helper thread which computes the response. The socket is then free again for a new connection.
+		\begin{lstlisting}
+while(!Thread.currentThread().isInterrupted()) {
+	try {
+		socket = serverSocket.accept();	
+							
+		//start a new thread to handle connection
+		ServerHelperThread sth = new ServerHelperThread(socket, mContext);
+		new Thread(sth).start();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+}	
+		\end{lstlisting}
+	%\item Show in a control flow diagram, pseudo code or your actual Java implementation, how you (would) do the handling of the connections on the server side. If you weren't able to implement the multi threading, explain it for a single threaded version.
+	\item We implemented both sensing and actuation. For the sensing there is the possibility to see the list of the sensors and also to see the details of a chosen specific sensor. \\
+	Actuation was implemented for vibrating the phone for a specified amount of time (by the slider) and for starting some kind of music on the phone. \\
+	We implemented both sensing and actuation by the GET method. The GET method is easier to implement and the data is easier to acquire. Secondly we didn't manage to safely get the data of the POST method, apparently the browser didn't send an end of the header and the InputStreamReader was waiting for more data, so we stuck with the GET method.
+	%\item Did you implement sensing and/or actuation? How did you make use of the different HTTP methods, e.g. GET or PUT?
 \end{itemize}
 
 \section{Enhancements}

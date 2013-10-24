@@ -25,11 +25,11 @@ public class MainActivity extends Activity {
 		if(((ToggleButton) v).isChecked()){
 			//start a new thread with server logic
             sth = new ServerMainThread(this.getApplicationContext());
-			thread = new Thread(sth);
-			thread.start();
+            thread = new Thread(sth);
+            thread.start();
+
 		} else {
 			thread.interrupt();
-			thread.destroy();
 		}	
 	}
 

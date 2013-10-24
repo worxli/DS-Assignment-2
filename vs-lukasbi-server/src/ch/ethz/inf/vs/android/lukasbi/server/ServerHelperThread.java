@@ -80,7 +80,6 @@ public class ServerHelperThread implements Runnable, SensorEventListener   {
 			
 			//spl[0] -> request type: GET or POST etc.
 			//spl[1] -> request address: /.../...
-			//spl[2] -> ?
 			
 			//check for / and split request address in page and var
 			if(spl[1].indexOf("/",2)>0){
