@@ -8,46 +8,47 @@ I was expecting a `,' or a `}'---line 17 of file report.bib
  :   url = {https://code.google.com/p/ksoap2-android/}
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in temperatureSpot1
 Warning--to sort, need author or key in ksoap2
-You've used 1 entry,
+You've used 2 entries,
             2118 wiz_defined-function locations,
-            498 strings with 3731 characters,
-and the built_in function-call counts, 168 in all, are:
-= -- 12
-> -- 1
+            503 strings with 3879 characters,
+and the built_in function-call counts, 336 in all, are:
+= -- 29
+> -- 2
 < -- 0
-+ -- 1
++ -- 2
 - -- 0
-* -- 7
-:= -- 23
-add.period$ -- 1
-call.type$ -- 1
-change.case$ -- 3
+* -- 12
+:= -- 42
+add.period$ -- 4
+call.type$ -- 2
+change.case$ -- 6
 chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 7
-empty$ -- 24
+cite$ -- 4
+duplicate$ -- 14
+empty$ -- 47
 format.name$ -- 0
-if$ -- 38
+if$ -- 80
 int.to.chr$ -- 0
-int.to.str$ -- 1
+int.to.str$ -- 2
 missing$ -- 0
-newline$ -- 6
+newline$ -- 11
 num.names$ -- 0
-pop$ -- 8
+pop$ -- 18
 preamble$ -- 1
-purify$ -- 2
+purify$ -- 4
 quote$ -- 0
-skip$ -- 10
+skip$ -- 15
 stack$ -- 0
-substring$ -- 5
-swap$ -- 1
+substring$ -- 10
+swap$ -- 2
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
-warning$ -- 1
+type$ -- 8
+warning$ -- 2
 while$ -- 0
-width$ -- 2
-write$ -- 7
+width$ -- 3
+write$ -- 16
 (There was 1 error message)

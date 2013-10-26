@@ -139,18 +139,47 @@ RESTful Web Services use the HTTP verbs to specify the action to perform on an o
 WS\hbox{-}* Web Services describes a class of Web Services which make use of the WSDL protocol to advertise their capabilities to other services and usually implement the SOAP protocol for actual requests to the service (however, this is not a requirement, WSDL allows for any arbitrary request protocol to be specified). Their main advantage is the wide range of configuration and extensibility options as well as the automated service discovery. This flexibility comes with a price though and thus usually WS\hbox{-}* services are usually considerably more complex than their REST equivalents.
 
 \section{RESTful Web Services}
-\begin{itemize}
-	\item Describe shortly, how you designed your application to implement this Task. Which Android core elements did you use (e.g., Activity, Service, AsyncTask, Intent)?
-	\item Explain why it is beneficial (or even required, since Android 3.0), to off-load networking tasks to AsyncTask. \textbf{Hint:} Explain what \emph{blocking}-methods are in the context of handling I/O Streams.
-	\item Explain how you make use of the different methods provided by AsyncTask, such as \texttt{doInBackground}, \texttt{onPreExecute}, \texttt{onProgressUpdate}, \texttt{publishProgress} or \texttt{onPostExecute}.
-\end{itemize}
-
+%\begin{itemize}
+%	\item Describe shortly, how you designed your application to implement this Task. Which Android core elements did you use (e.g., Activity, Service, AsyncTask, Intent)?
+%	\item Explain why it is beneficial (or even required, since Android 3.0), to off-load networking tasks to AsyncTask. \textbf{Hint:} Explain what \emph{blocking}-methods are in the context of handling I/O Streams.
+%	\item Explain how you make use of the different methods provided by AsyncTask, such as \texttt{doInBackground}, \texttt{onPreExecute}, \texttt{onProgressUpdate}, \texttt{publishProgress} or \texttt{onPostExecute}.
+%\end{itemize}
 In this assignment we retrieve the temperature of Spot 1 \cite{temperatureSpot1}, which is obviously served by a RESTful Web Service. The application consists of a single Main Activity. This Activity provides four buttons to invoke the RESTful Web Service. The first and second button will make HTTP requests using different libraries. The third and fourth button will make use of the  \texttt{content negotitation} mechanism. The last button displays a visualization using cloud services explained in-depth in section Cloud Services. All HTTP requests are invoked asynchronous, handled by the Main Activity, using the AsyncTask class.
 
-Since Android 3.0 attempts to perform a networking operation must not be handled on the GUI thread which is simultaneously the main thread of the application. This makes perfect sense because network operations include blocking methods. Blocking methods are those method which block the executing thread until there operation finished. Famous example of blocking method is InputStream \texttt{read()} method which blocks until all data from InputStream has been read completely. In networking operations in Java a lot of InputStreams are used. Thereforce it is necesserary to handle networking operations in a seperate thread to avoid blocking the main thread. If the main thread would be blocked user input can not be made. For this reason Android provides an \texttt{AsyncTask} class.
+Since Android 3.0 attempts to perform a networking operation must not be handled on the GUI thread which is simultaneously the main thread of the application. This makes perfect sense because network operations include blocking methods. Blocking methods are those method which block the executing thread until the operation finished. Famous example of blocking method is InputStream \texttt{read()} method which blocks until all data from InputStream has been read completely. Networking operations in Java use a lot of InputStreams. Therefore it is necesserary to handle networking operations in a seperate thread to avoid blocking the main thread. If the main thread would be blocked, user input can not be made. For this reason Android provides an \texttt{AsyncTask} class.
 
+\lstset{language=Java,caption={Using AsyncTask},label=asynctask} 
+	\begin{lstlisting}
+// Our worker which performs networking operations
+private class RESTWorker extends AsyncTask<String, Void, String> {
+	...
+}
+	\end{lstlisting}
 
-Read more: http://javarevisited.blogspot.com/2012/02/what-is-blocking-methods-in-java-and.html#ixzz2iqmeIdKO
+The AysncTask class serves several important methods, such as \texttt{doInBackground}, \texttt{onPostExecute}. \texttt{doInBackground} performs all operations asynchronous in background on a seperate thread. We use this method to do all the networking operations such as sending HTTP GET requests. Full advantage shows us AsyncTask when it happens to update UI elements. For this reason, AsynTask provides a method \texttt{onPostExecute} which is synchronized to the main thread (rember, this is also the UI thread). Therefore one can easily update UI elements without having to worry about the synchronization.
+
+\lstset{language=Java,caption={Updating UI elements},label=uielements} 
+	\begin{lstlisting}
+	@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			// this method is synchronized with the user main thread (handled by Android), so no problems occur...
+			if (result != null) {
+				switch (mode) {
+					default:
+						// clear chart and write REST response
+						imgChart.setImageResource(R.drawable.blank);
+						if (retrieveWithLabelAndWrite) writeResult(result);
+						break;
+					case RESTWorker.MODE_CHART:
+						// clear REST response and display chart
+						writeResult("");
+						imgChart.setImageBitmap(bmp);
+						break;
+				}
+			}
+		}
+	\end{lstlisting}
 
 \begin{figure}
     \centering
