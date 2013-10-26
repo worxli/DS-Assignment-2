@@ -12,19 +12,47 @@
         android:id="@+id/getTempButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Button01"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:text="Temperature of Spot3"
-        android:onClick="getTemp" />
+        android:onClick="getTemp"
+        android:text="Temperature of Spot3" />
 
     <TextView
         android:id="@+id/tempTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/getTempButton"
+        android:layout_centerHorizontal="true"
+        android:text="No Data" />
+
+    <Button
+        android:id="@+id/getRawXMLButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tempTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
+        android:onClick="getRawXML"
+        android:text="Show Raw XML" />
+
+    <TextView
+        android:id="@+id/rawXMLResponse"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/rawTempTextView"
+        android:layout_alignLeft="@+id/rawTempTextView"
+        android:layout_below="@+id/getRawXMLButton"
+        android:layout_marginTop="16dp"
         android:text="TextView" />
+
+    <TextView
+        android:id="@+id/rawTempTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/getRawXMLButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/getRawXMLButton"
+        android:text="@string/rawXMLTemp"
+        android:textAlignment="center" />
 
 </RelativeLayout>
