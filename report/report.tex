@@ -149,6 +149,30 @@ Compare RESTful against WS\hbox{-}* Web Services by listing some advantages and 
 	\item Explain how you make use of the different methods provided by AsyncTask, such as \texttt{doInBackground}, \texttt{onPreExecute}, \texttt{onProgressUpdate}, \texttt{publishProgress} or \texttt{onPostExecute}.
 \end{itemize}
 
+	In this assignment we retrieve the temperature of Spot 1 \cite{temperatureSpot1}, which is obviously served by a RESTful Web Service. The application consists of a single Main Activity. This Activity provides four buttons to invoke the RESTful Web Service. The first and second button will make HTTP requests using different libraries. The third and fourth button will make use of the  \texttt{content negotitation} mechanism. The last button displays a visualization using cloud services explained in-depth in section Cloud Services. All HTTP requests are invoked asynchronous, handled by the Main Activity, using the AsyncTask class.
+
+	Since Android 3.0 attempts to perform a networking operation must not be handled on the GUI thread which is simultaneously the main thread of the application. This makes perfect sense because network operations include blocking methods. Blocking methods are those method which block the executing thread until there operation finished. Famous example of blocking method is InputStream \texttt{read()} method which blocks until all data from InputStream has been read completely. In networking operations in Java a lot of InputStreams are used. Thereforce it is necesserary to handle networking operations in a seperate thread to avoid blocking the main thread. If the main thread would be blocked user input can not be made. For this reason Android provides an \texttt{AsyncTask} class.
+
+
+Read more: http://javarevisited.blogspot.com/2012/02/what-is-blocking-methods-in-java-and.html#ixzz2iqmeIdKO
+
+\begin{figure}
+    \centering
+    \subfigure[Extracted value from JSON repsonse]{
+        \includegraphics[height=4.2cm]{rest-1.png}
+        \lfig{axis}   
+    }
+    \subfigure[Raw JSON response]{
+        \includegraphics[height=4.2cm]{rest-2.png}
+        \lfig{axis}   
+    }
+    \subfigure[Raw HTML response]{
+        \includegraphics[height=4.2cm]{rest-3.png}
+        \lfig{axis}   
+    }
+    \caption{GUI of Main Activity showing different responses}
+\end{figure}
+
 \section{WS-* Web Services}
 As a first task for the WS-* web services part we had to think about how we would implement invoking a WS-* web service only using the \texttt{java.net} library. The following steps would have to be pursued:
 \begin{enumerate}

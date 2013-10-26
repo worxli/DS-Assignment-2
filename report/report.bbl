@@ -6,6 +6,12 @@
   \url{http://developer.android.com/guide/components/services.html#Notifications}.
 \newblock Accessed on 29 Aug 2013.
 
+\bibitem{temperatureSpot1}
+{Temperature of Spot 1}.
+\newblock
+  \url{http://vslab.inf.ethz.ch:8081/sunspots/Spot1/sensors/temperature}.
+\newblock Accessed on 26 Oct 2013.
+
 \bibitem{hello}
 E.~Burnette.
 \newblock {\em Hello, Android: introducing Google's mobile development

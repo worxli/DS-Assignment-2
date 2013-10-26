@@ -4,45 +4,46 @@ The top-level auxiliary file: report.aux
 The style file: abbrv.bst
 Database file #1: report.bib
 Warning--to sort, need author or key in devServices
-You've used 4 entries,
+Warning--to sort, need author or key in temperatureSpot1
+You've used 5 entries,
             2118 wiz_defined-function locations,
-            519 strings with 4270 characters,
-and the built_in function-call counts, 1008 in all, are:
-= -- 92
-> -- 53
+            524 strings with 4418 characters,
+and the built_in function-call counts, 1176 in all, are:
+= -- 109
+> -- 54
 < -- 0
-+ -- 22
++ -- 23
 - -- 18
-* -- 57
-:= -- 178
-add.period$ -- 12
-call.type$ -- 4
-change.case$ -- 21
+* -- 62
+:= -- 197
+add.period$ -- 15
+call.type$ -- 5
+change.case$ -- 24
 chr.to.int$ -- 0
-cite$ -- 5
-duplicate$ -- 35
-empty$ -- 82
+cite$ -- 7
+duplicate$ -- 42
+empty$ -- 105
 format.name$ -- 18
-if$ -- 207
+if$ -- 249
 int.to.chr$ -- 0
-int.to.str$ -- 4
+int.to.str$ -- 5
 missing$ -- 2
-newline$ -- 23
+newline$ -- 28
 num.names$ -- 6
-pop$ -- 35
+pop$ -- 45
 preamble$ -- 1
-purify$ -- 17
+purify$ -- 19
 quote$ -- 0
-skip$ -- 23
+skip$ -- 28
 stack$ -- 0
-substring$ -- 20
-swap$ -- 4
+substring$ -- 25
+swap$ -- 5
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 14
-warning$ -- 1
+type$ -- 18
+warning$ -- 2
 while$ -- 6
-width$ -- 5
-write$ -- 43
-(There was 1 warning)
+width$ -- 6
+write$ -- 52
+(There were 2 warnings)
