@@ -127,20 +127,16 @@
 \maketitle
 
 \begin{abstract}
-Concisely state (i) which Android device you used, (ii) which tasks you completed and which are working correctly or limited, and (iii) what your specific enhancements are.
+For the implementation of this assignment we made use of the two lab provided HTC desire number 25 and 37. We were able to implement all the assigments listed on the assignment sheet and to our best knowledge all services are working flawlessly. Our enhancements include the graphing of temperatures using the Google REST Charts API as well as [WHATEVER YOU ENHANCED THE SERVER WITH].
 \end{abstract}
 
 \section{Introduction}
 
-Use the introduction for background information on the assignment.
-See your assignment sheet for specific questions on the topic that you have to answer in this section.
-Use references such as books \cite{hello}, papers and theses \cite{REST}, or specifications \cite{RFC2616} whenever available.
-Web sites for documentation \cite{devServices}, tutorials, etc. are a special case.
-In a thesis, you would put them as footnotes. At this stage, however, you will only have a few ``real references,'' so we put the Web sites into the bibliography.
-Cite every source you used throughout the assignment.
+Web Services allow for the easy inclusion of services provided by any entity over the internet. One of the main advantages of web services are that they allow for a simple implementation of the service oriented architecture as they abstract and implement many of the common networking problems encountered in implementing such an architecture. Additionally web services have the advantage of making it dead simple to include functionality implemented by 3rd parties by simply calling their services with the required parameters.
 
-For Assignment 2, please give a short overview of Web Services, especially their benefits.
-Compare RESTful against WS\hbox{-}* Web Services by listing some advantages and disadvantages of both concepts.
+RESTful Web Services use the HTTP verbs to specify the action to perform on an object identified by the service URL. The key advantage of this method over WS\hbox{-}* Web Services is their simplicity due to the implicit encoding of the action in the HTTP verb. However as the same time this is also one of their main drawbacks as they are somewhat more limited in terms of functionality and extensibility than WS\hbox{-}* Web Services.
+
+WS\hbox{-}* Web Services describes a class of Web Services which make use of the WSDL protocol to advertise their capabilities to other services and usually implement the SOAP protocol for actual requests to the service (however, this is not a requirement, WSDL allows for any arbitrary request protocol to be specified). Their main advantage is the wide range of configuration and extensibility options as well as the automated service discovery. This flexibility comes with a price though and thus usually WS\hbox{-}* services are usually considerably more complex than their REST equivalents.
 
 \section{RESTful Web Services}
 \begin{itemize}
@@ -188,11 +184,12 @@ InputStream response = connection.getInputStream();
 	\item Finally we parse the XML from the response to obtain the data we asked for. Done!
 \end{enumerate}
 
-\begin{itemize}
-	\item Describe shortly, how you designed your application to implement this Task. Did you reuse elements from Task 1?
-	\item What are the roles of WSDL files and SOAP requests in WS-* Web Services?
-	\item Explain why SOAP messages are exchanged in XML format and what unmarshalling to platform specific objects means.
-\end{itemize}
+
+For the second part of the WS\hbox{-}* Web Services we implemented a simple Android application that downloads the latest temperature from Spot3 using SOAP requests. Our application consists of only two classes, one subclass of Activity, which implements our MainActivity, and one subclass of AsyncTask, which perfoms all the required networking in the background. This second class was largely recycled from Task 1 and adapted to fit the use of the WS\hbox{-}* Web Services.
+
+To be able to perform requests against a Web Service one must first know which services and actions exist. This part is covered by WSDL files and we retrieved the WSDL file corresponding to the Web Service for this task from the lecture website. From the WSDL we were able to determine the service endpoint as well as the action name and the parameters to pass in. With this information we were able to actually build the requests required, in this case SOAP requests. The actual creation of the SOAP request is performed by the ksoap2-androidlibrary\cite{ksoap2} which takes care of forming the appropriate XML strings.
+
+The main advantage of SOAP using XML instead of a binary format is that it is completely platform independent and allows for the encoding of arbitrary objects. The process of transforming these objects back into platform specific objects (ie. Java objects if the final destination platform is Java) is commonly referred to as unmarshalling.
 
 \section{Cloud Services}
 \begin{itemize}

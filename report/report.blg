@@ -3,46 +3,51 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: report.aux
 The style file: abbrv.bst
 Database file #1: report.bib
-Warning--to sort, need author or key in devServices
-You've used 4 entries,
+I was expecting a `,' or a `}'---line 17 of file report.bib
+ :   
+ :   url = {https://code.google.com/p/ksoap2-android/}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in ksoap2
+You've used 1 entry,
             2118 wiz_defined-function locations,
-            519 strings with 4270 characters,
-and the built_in function-call counts, 1008 in all, are:
-= -- 92
-> -- 53
+            498 strings with 3731 characters,
+and the built_in function-call counts, 168 in all, are:
+= -- 12
+> -- 1
 < -- 0
-+ -- 22
-- -- 18
-* -- 57
-:= -- 178
-add.period$ -- 12
-call.type$ -- 4
-change.case$ -- 21
++ -- 1
+- -- 0
+* -- 7
+:= -- 23
+add.period$ -- 1
+call.type$ -- 1
+change.case$ -- 3
 chr.to.int$ -- 0
-cite$ -- 5
-duplicate$ -- 35
-empty$ -- 82
-format.name$ -- 18
-if$ -- 207
+cite$ -- 2
+duplicate$ -- 7
+empty$ -- 24
+format.name$ -- 0
+if$ -- 38
 int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 2
-newline$ -- 23
-num.names$ -- 6
-pop$ -- 35
+int.to.str$ -- 1
+missing$ -- 0
+newline$ -- 6
+num.names$ -- 0
+pop$ -- 8
 preamble$ -- 1
-purify$ -- 17
+purify$ -- 2
 quote$ -- 0
-skip$ -- 23
+skip$ -- 10
 stack$ -- 0
-substring$ -- 20
-swap$ -- 4
+substring$ -- 5
+swap$ -- 1
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 14
+type$ -- 4
 warning$ -- 1
-while$ -- 6
-width$ -- 5
-write$ -- 43
-(There was 1 warning)
+while$ -- 0
+width$ -- 2
+write$ -- 7
+(There was 1 error message)
