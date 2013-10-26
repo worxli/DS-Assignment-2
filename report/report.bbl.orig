@@ -1,6 +1,7 @@
 \begin{thebibliography}{1}
 
-\bibitem{ksoap2}
+<<<<<<< HEAD
+\bibitem{devServices}
 {Services: Sending Notifications to the User}.
 \newblock
   \url{http://developer.android.com/guide/components/services.html#Notifications}.
@@ -29,5 +30,9 @@ R.~T. Fielding.
 \newblock {\em {Architectural Styles and the Design of Network-based Software
   Architectures}}.
 \newblock Phd thesis, UC Irvine, 2000.
+=======
+\bibitem{ksoap2}
+{ksoap2-android library}.
+>>>>>>> 9c1dc60f27d1a16657509f849e21c01e78edf3d7
 
 \end{thebibliography}

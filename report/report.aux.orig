@@ -1,9 +1,12 @@
 \relax 
+<<<<<<< HEAD
 \citation{hello}
 \citation{REST}
 \citation{RFC2616}
 \citation{devServices}
 \citation{temperatureSpot1}
+=======
+>>>>>>> 9c1dc60f27d1a16657509f849e21c01e78edf3d7
 \select@language{english}
 \@writefile{toc}{\select@language{english}}
 \@writefile{lof}{\select@language{english}}
@@ -25,9 +28,7 @@
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Getting data from a webserver using HTTP GET}{\thepage }}
 \newlabel{httpget}{{2}{\thepage }}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {2}SOAP Request}{\thepage }}
-\newlabel{httpget}{{3}{\thepage }}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3}POST-ing a SOAP request to the endpoint}{\thepage }}
-\citation{ksoap2}
+<<<<<<< HEAD
 \bibstyle{abbrv}
 \bibdata{report}
 \bibcite{devServices}{1}
@@ -37,6 +38,14 @@
 \bibcite{REST}{5}
 \newlabel{httpget}{{3}{\thepage }}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {3}POST-ing a SOAP request to the endpoint}{\thepage }}
+=======
+\newlabel{httpget}{{3}{\thepage }}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3}POST-ing a SOAP request to the endpoint}{\thepage }}
+\citation{ksoap2}
+\bibstyle{abbrv}
+\bibdata{report}
+\bibcite{ksoap2}{1}
+>>>>>>> 9c1dc60f27d1a16657509f849e21c01e78edf3d7
 \@writefile{toc}{\contentsline {section}{\numberline {4}Cloud Services}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Your Phone As a Server}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Enhancements}{\thepage }}

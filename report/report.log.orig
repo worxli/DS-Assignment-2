@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.18)  26 OCT 2013 18:22
+=======
 This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.11)  26 OCT 2013 19:57
+>>>>>>> 9c1dc60f27d1a16657509f849e21c01e78edf3d7
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -288,6 +292,7 @@ Package: listings 2007/02/22 1.4 (Carsten Heinz)
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
 (./report.aux
+<<<<<<< HEAD
 
 LaTeX Warning: Label `fig:axis' multiply defined.
 
@@ -300,6 +305,8 @@ LaTeX Warning: Label `fig:axis' multiply defined.
 
 LaTeX Warning: Label `sub@fig:axis' multiply defined.
 
+=======
+>>>>>>> 9c1dc60f27d1a16657509f849e21c01e78edf3d7
 
 LaTeX Warning: Label `httpget' multiply defined.
 
@@ -404,6 +411,7 @@ LaTeX Font Info:    Try loading font information for T1+aett on input line 145.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
+<<<<<<< HEAD
 <rest-1.png, id=1, 416.55624pt x 702.625pt>
 File: rest-1.png Graphic file (type png)
  <use rest-1.png>
@@ -431,13 +439,20 @@ File: rest-3.png Graphic file (type png)
 Package pdftex.def Info: rest-3.png used on input line 167.
 (pdftex.def)             Requested size: 71.80188pt x 119.50148pt.
 
+Overfull \hbox (4.82263pt too wide) in paragraph at lines 174--176
+=======
 Overfull \hbox (4.82263pt too wide) in paragraph at lines 151--153
+>>>>>>> 9c1dc60f27d1a16657509f849e21c01e78edf3d7
 []\T1/aer/m/n/9 Get the web ser-vice's de-scrip-tion by ob-tain-ing its WSDL
  []
 
 
 LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
+<<<<<<< HEAD
+(Font)              using `T1/aett/m/n' instead on input line 178.
+=======
 (Font)              using `T1/aett/m/n' instead on input line 155.
+>>>>>>> 9c1dc60f27d1a16657509f849e21c01e78edf3d7
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
@@ -447,8 +462,13 @@ File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 ) [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
+<<<<<<< HEAD
+ <./rest-1.png> <./rest-2.png> <./rest-3.png>] (./report.bbl) [2] (./report.aux
+)
+=======
 ] (./report.bbl)
 [2] (./report.aux)
+>>>>>>> 9c1dc60f27d1a16657509f849e21c01e78edf3d7
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -457,6 +477,15 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
+ 5249 strings out of 493315
+ 70776 string characters out of 6137903
+ 229842 words of memory out of 5000000
+ 8565 multiletter control sequences out of 15000+600000
+ 52292 words of font info for 73 fonts, out of 8000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 41i,11n,49p,627b,1590s stack positions out of 5000i,500n,10000p,200000b,80000s
+=======
  5227 strings out of 493315
  70496 string characters out of 6137903
  228296 words of memory out of 5000000
@@ -464,6 +493,7 @@ Here is how much of TeX's memory you used:
  52292 words of font info for 73 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  41i,11n,49p,652b,1658s stack positions out of 5000i,500n,10000p,200000b,80000s
+>>>>>>> 9c1dc60f27d1a16657509f849e21c01e78edf3d7
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/tex
 live/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texliv
@@ -475,10 +505,17 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2013/texm
 f-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2013/texmf-dist/
 fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/t
 ype1/urw/times/utmb8a.pfb>
+<<<<<<< HEAD
+Output written on report.pdf (2 pages, 671410 bytes).
+PDF statistics:
+ 59 PDF objects out of 1000 (max. 8388607)
+ 38 compressed objects within 1 object stream
+=======
 Output written on report.pdf (2 pages, 123302 bytes).
 PDF statistics:
  52 PDF objects out of 1000 (max. 8388607)
  37 compressed objects within 1 object stream
+>>>>>>> 9c1dc60f27d1a16657509f849e21c01e78edf3d7
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

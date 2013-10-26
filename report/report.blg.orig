@@ -3,6 +3,52 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: report.aux
 The style file: abbrv.bst
 Database file #1: report.bib
+<<<<<<< HEAD
+Warning--to sort, need author or key in devServices
+Warning--to sort, need author or key in temperatureSpot1
+You've used 5 entries,
+            2118 wiz_defined-function locations,
+            524 strings with 4418 characters,
+and the built_in function-call counts, 1176 in all, are:
+= -- 109
+> -- 54
+< -- 0
++ -- 23
+- -- 18
+* -- 62
+:= -- 197
+add.period$ -- 15
+call.type$ -- 5
+change.case$ -- 24
+chr.to.int$ -- 0
+cite$ -- 7
+duplicate$ -- 42
+empty$ -- 105
+format.name$ -- 18
+if$ -- 249
+int.to.chr$ -- 0
+int.to.str$ -- 5
+missing$ -- 2
+newline$ -- 28
+num.names$ -- 6
+pop$ -- 45
+preamble$ -- 1
+purify$ -- 19
+quote$ -- 0
+skip$ -- 28
+stack$ -- 0
+substring$ -- 25
+swap$ -- 5
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 18
+warning$ -- 2
+while$ -- 6
+width$ -- 6
+write$ -- 52
+(There were 2 warnings)
+=======
 I was expecting a `,' or a `}'---line 17 of file report.bib
  :   
  :   url = {https://code.google.com/p/ksoap2-android/}
@@ -51,3 +97,4 @@ while$ -- 0
 width$ -- 2
 write$ -- 7
 (There was 1 error message)
+>>>>>>> 9c1dc60f27d1a16657509f849e21c01e78edf3d7
