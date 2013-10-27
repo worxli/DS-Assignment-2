@@ -59,8 +59,8 @@ public class MainActivity extends Activity {
 	 * Google chart service
 	 */
 	private final String GOOGLE_CHART = "https://chart.googleapis.com/chart";
-	private final int CHART_WIDTH = 350, CHART_HEIGHT = 400;
-	private final int Y_AXIS_SCALE = 30;
+	private final int CHART_WIDTH = 310, CHART_HEIGHT = 400;
+	private final int Y_AXIS_SCALE = 40;
 	private final int DATA_SIZE = 10;
 	private final int TIMEOUT = 5;
 	
@@ -204,6 +204,7 @@ public class MainActivity extends Activity {
 				postData.add(new BasicNameValuePair("chds", String.format("0,%d", Y_AXIS_SCALE))); // scale data
 				postData.add(new BasicNameValuePair("chxr", String.format("0,1,10|2,0,%d,5", Y_AXIS_SCALE))); // scale axis
 				postData.add(new BasicNameValuePair("chxl", String.format("1:|%s|3:|%s", labelX, labelY))); // labels
+				postData.add(new BasicNameValuePair("chxp", "1,50")); // axis position
 				httppost.setEntity(new UrlEncodedFormEntity(postData));
 			
 				// get the chart as a inputstream and then decode it into a bmp
