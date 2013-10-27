@@ -127,7 +127,7 @@
 \maketitle
 
 \begin{abstract}
-For the implementation of this assignment we made use of the two lab provided HTC desire number 25 and 37. We were able to implement all the assigments listed on the assignment sheet and to our best knowledge all services are working flawlessly. Our enhancements include the graphing of temperatures using the Google REST Charts API as well as [WHATEVER YOU ENHANCED THE SERVER WITH].
+For the implementation of this assignment we made use of the two lab provided HTC desire number 25 and 37. We were able to implement all the assigments listed on the assignment sheet and to our best knowledge all services are working flawlessly. Our enhancements include the graphing of temperatures using the Google REST Charts API as well as multithreaded request management on the server.
 \end{abstract}
 
 \section{Introduction}
@@ -262,9 +262,10 @@ The measured temperatures of Spot 1 are visualized with a bar chart (cf. \rfig{c
 
 \section{Your Phone As a Server}
 \begin{itemize}
-	\item The implementation of the server relies on an Activity to start and stop the server and some background threads to handle network action and multitasking. 
+	\item The implementation of the server relies on an Activity to start and stop the server and some background threads to handle network action and multitasking. The idea was to let the communication with the sensors run in a separate service, but we didn't manage to easily bind the sensor and actuation service to the ServerHelperThread. So we decided to place the acquiring of the sensor data and the actuations in the same thread which answers the client's request.  
 	%\item Describe shortly, how you designed your application to implement this Task. Which Android core elements did you use this time?
-	\item Java code for accepting multiple connections. Each time the socket is bound to an incoming connection it gets assigned to a helper thread which computes the response. The socket is then free again for a new connection.
+	\item Java code for accepting multiple connections: Each time the socket is bound to an incoming connection, it gets assigned to a helper thread which computes the response. The socket is then free again for a new connection.
+	\lstset{language=Java,caption={Delegating connection response handling to ServerHelperThread},label=httpget} 
 		\begin{lstlisting}
 while(!Thread.currentThread().isInterrupted()) {
 	try {
@@ -280,7 +281,7 @@ while(!Thread.currentThread().isInterrupted()) {
 		\end{lstlisting}
 	%\item Show in a control flow diagram, pseudo code or your actual Java implementation, how you (would) do the handling of the connections on the server side. If you weren't able to implement the multi threading, explain it for a single threaded version.
 	\item We implemented both sensing and actuation. For the sensing there is the possibility to see the list of the sensors and also to see the details of a chosen specific sensor. \\
-	Actuation was implemented for vibrating the phone for a specified amount of time (by the slider) and for starting some kind of music on the phone. \\
+	Actuation was implemented for vibrating the phone for a specified amount of time (by the slider) and for starting some sound on the phone. \\
 	We implemented both sensing and actuation by the GET method. The GET method is easier to implement and the data is easier to acquire. Secondly we didn't manage to safely get the data of the POST method, apparently the browser didn't send an end of the header and the InputStreamReader was waiting for more data, so we stuck with the GET method.
 	%\item Did you implement sensing and/or actuation? How did you make use of the different HTTP methods, e.g. GET or PUT?
 \end{itemize}
@@ -293,7 +294,7 @@ Here you are free to describe what you did, however, stick to a concise, scienti
 \section{Conclusion}
 
 %Give an overall conclusion that summarizes the main challenges you encountered and your lessons learned.
-One conclusion that we obtained is dealing with RESTful Web Services is much easier und comfortable than with WS-* Web Services.
+The main conclusion we obtained is that dealing with RESTful Web Services is much easier and more comfortable than dealing with WS-* Web Services.
 
 % The following two commands are all you need in the
 % initial runs of your .tex file to
