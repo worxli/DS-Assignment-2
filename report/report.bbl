@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{googleChart}
+{Google Chart Tools Image}.
+\newblock \url{https://developers.google.com/chart/image/}.
+\newblock Accessed on 26 Oct 2013.
+
 \bibitem{ksoap2}
 {ksoap2-android library}.
 

@@ -10,45 +10,46 @@ I was expecting a `,' or a `}'---line 17 of file report.bib
 I'm skipping whatever remains of this entry
 Warning--to sort, need author or key in temperatureSpot1
 Warning--to sort, need author or key in ksoap2
-You've used 2 entries,
+Warning--to sort, need author or key in googleChart
+You've used 3 entries,
             2118 wiz_defined-function locations,
-            503 strings with 3879 characters,
-and the built_in function-call counts, 336 in all, are:
-= -- 29
-> -- 2
+            507 strings with 3975 characters,
+and the built_in function-call counts, 504 in all, are:
+= -- 46
+> -- 3
 < -- 0
-+ -- 2
++ -- 3
 - -- 0
-* -- 12
-:= -- 42
-add.period$ -- 4
-call.type$ -- 2
-change.case$ -- 6
+* -- 17
+:= -- 61
+add.period$ -- 7
+call.type$ -- 3
+change.case$ -- 9
 chr.to.int$ -- 0
-cite$ -- 4
-duplicate$ -- 14
-empty$ -- 47
+cite$ -- 6
+duplicate$ -- 21
+empty$ -- 70
 format.name$ -- 0
-if$ -- 80
+if$ -- 122
 int.to.chr$ -- 0
-int.to.str$ -- 2
+int.to.str$ -- 3
 missing$ -- 0
-newline$ -- 11
+newline$ -- 16
 num.names$ -- 0
-pop$ -- 18
+pop$ -- 28
 preamble$ -- 1
-purify$ -- 4
+purify$ -- 6
 quote$ -- 0
-skip$ -- 15
+skip$ -- 20
 stack$ -- 0
-substring$ -- 10
-swap$ -- 2
+substring$ -- 15
+swap$ -- 3
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
-warning$ -- 2
+type$ -- 12
+warning$ -- 3
 while$ -- 0
-width$ -- 3
-write$ -- 16
+width$ -- 4
+write$ -- 25
 (There was 1 error message)
